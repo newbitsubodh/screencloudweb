@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920, initial-scale=1.0">
+<title>AfDB Weekly Statistical Bulletin — 20 February 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dark: #9A7A2E;
+    --deep: #0A0E1A;
+    --panel: #0F1524;
+    --panel2: #131929;
+    --border: rgba(201,168,76,0.2);
+    --border-bright: rgba(201,168,76,0.5);
+    --green: #2ECC8A;
+    --red: #E8425A;
+    --text: #E8E4D8;
+    --muted: #8A8A9A;
+    --accent: #4A9EFF;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: var(--deep);
+    font-family: 'Barlow', sans-serif;
+    color: var(--text);
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.4;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 340px 1fr 320px;
+    grid-template-rows: 72px 1fr 1fr;
+    width: 1920px;
+    height: 1080px;
+    gap: 0;
+    padding: 0;
+  }
+
+  /* HEADER */
+  .header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+    background: linear-gradient(90deg, #0A0E1A 0%, #0F1524 40%, #0F1524 60%, #0A0E1A 100%);
+    border-bottom: 1px solid var(--border-bright);
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .logo-box {
+    background: white;
+    border-radius: 4px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.4);
+    flex-shrink: 0;
+  }
+  .logo-box img { height: 44px; width: auto; display: block; }
+  .brand-text { display: flex; flex-direction: column; gap: 1px; }
+  .brand-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .brand-sub {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .header-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .header-title span { color: var(--gold); }
+  .header-date {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+  .date-label {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .date-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 15px;
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  /* LEFT PANEL - Energy & Metals */
+  .left-panel {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+    background: linear-gradient(180deg, var(--panel) 0%, var(--deep) 100%);
+  }
+
+  /* CENTER TOP - Agriculture */
+  .center-top {
+    grid-column: 2;
+    grid-row: 2;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    padding: 14px 20px;
+  }
+
+  /* CENTER BOTTOM - Exchange Rates */
+  .center-bottom {
+    grid-column: 2;
+    grid-row: 3;
+    border-right: 1px solid var(--border);
+    padding: 14px 20px;
+  }
+
+  /* RIGHT PANEL - Stock Markets */
+  .right-panel {
+    grid-column: 3;
+    grid-row: 2 / 4;
+    padding: 16px;
+    background: linear-gradient(180deg, var(--panel) 0%, var(--deep) 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* SECTION HEADER */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .section-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border-bright), transparent);
+  }
+
+  /* COMMODITY ROW */
+  .commodity-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    border-left: 2px solid transparent;
+    transition: border-color 0.3s;
+    position: relative;
+  }
+  .commodity-row:hover { border-left-color: var(--gold); }
+  .commodity-row::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 10px; right: 10px;
+    height: 1px;
+    background: var(--border);
+  }
+  .commodity-row:last-child::after { display: none; }
+  .commodity-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .commodity-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-align: right;
+    width: 80px;
+  }
+  .commodity-unit {
+    font-size: 10px;
+    color: var(--muted);
+    width: 50px;
+    text-align: center;
+  }
+  .changes {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .change-badge {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 6px;
+    border-radius: 2px;
+    min-width: 56px;
+    text-align: center;
+  }
+  .change-badge.up { background: rgba(46,204,138,0.12); color: var(--green); border: 1px solid rgba(46,204,138,0.2); }
+  .change-badge.down { background: rgba(232,66,90,0.12); color: var(--red); border: 1px solid rgba(232,66,90,0.2); }
+  .change-badge.flat { background: rgba(138,138,154,0.1); color: var(--muted); border: 1px solid rgba(138,138,154,0.2); }
+  .change-label {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    writing-mode: horizontal-tb;
+    width: 40px;
+    text-align: center;
+  }
+
+  /* MINI SPARK (CSS bars) */
+  .mini-bar-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 22px;
+    width: 44px;
+  }
+  .mini-bar {
+    width: 5px;
+    background: var(--gold-dark);
+    border-radius: 1px 1px 0 0;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .mini-bar.last { background: var(--gold); opacity: 1; }
+
+  /* AGRICULTURE GRID */
+  .agri-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .agri-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .agri-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .agri-card.up::before { background: linear-gradient(90deg, var(--green), transparent); }
+  .agri-card.down::before { background: linear-gradient(90deg, var(--red), transparent); }
+  .agri-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .agri-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .agri-changes {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .agri-tag {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
+  .agri-tag.up { color: var(--green); background: rgba(46,204,138,0.1); }
+  .agri-tag.down { color: var(--red); background: rgba(232,66,90,0.1); }
+  .agri-tag-label { font-size: 9px; color: var(--muted); margin-right: 2px; }
+
+  /* EXCHANGE RATES */
+  .fx-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .fx-major-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: center;
+    position: relative;
+  }
+  .fx-code {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: 1px;
+  }
+  .fx-rate {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 13px;
+    color: var(--gold-light);
+    margin: 2px 0;
+  }
+  .fx-change {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+  }
+  .fx-change.up { color: var(--green); }
+  .fx-change.down { color: var(--red); }
+
+  .african-fx {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .afr-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    padding: 3px 8px;
+    border: 1px solid var(--border);
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    background: rgba(255,255,255,0.015);
+  }
+  .afr-code { color: var(--text); font-weight: 600; letter-spacing: 0.5px; }
+  .afr-val { font-family: 'Roboto Mono', monospace; font-size: 10px; color: var(--muted); }
+  .afr-chg { font-family: 'Roboto Mono', monospace; font-size: 10px; }
+  .afr-chg.up { color: var(--green); }
+  .afr-chg.down { color: var(--red); }
+
+  /* STOCK MARKETS */
+  .stock-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 7px 10px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .stock-row::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .stock-row.up::before { background: var(--green); }
+  .stock-row.down::before { background: var(--red); }
+  .stock-country {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    width: 88px;
+  }
+  .stock-index {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    width: 60px;
+  }
+  .stock-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: var(--gold-light);
+    text-align: right;
+    width: 72px;
+  }
+  .stock-ww {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    text-align: right;
+    width: 52px;
+  }
+  .stock-yy {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    text-align: right;
+    width: 52px;
+  }
+  .stock-ww.up, .stock-yy.up { color: var(--green); }
+  .stock-ww.down, .stock-yy.down { color: var(--red); }
+
+  /* FERTILIZER STRIP */
+  .fert-strip {
+    display: flex;
+    gap: 10px;
+    padding: 8px 10px;
+    background: rgba(201,168,76,0.05);
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border-bright);
+  }
+  .fert-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fert-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+  .fert-val {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+  }
+  .fert-chg {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+  }
+  .fert-chg.up { color: var(--green); }
+  .fert-chg.down { color: var(--red); }
+  .fert-sep { width: 1px; height: 20px; background: var(--border); }
+
+  /* TICKER TAPE */
+  .ticker-wrap {
+    grid-column: 1 / -1;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 36px;
+    background: rgba(10,14,26,0.95);
+    border-top: 1px solid var(--border-bright);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .ticker-label {
+    padding: 0 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+    border-right: 1px solid var(--border-bright);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+  .ticker-scroll {
+    display: flex;
+    animation: ticker 60s linear infinite;
+    white-space: nowrap;
+    align-items: center;
+    gap: 0;
+  }
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 20px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    color: var(--text);
+    border-right: 1px solid var(--border);
+  }
+  .ticker-item .t-name { color: var(--muted); font-size: 11px; }
+  .ticker-item .t-val { color: var(--text); }
+  .ticker-item .t-up { color: var(--green); }
+  .ticker-item .t-down { color: var(--red); }
+
+  /* Scrolling summary */
+  .summary-ticker {
+    display: flex;
+    overflow: hidden;
+  }
+  .summary-scroll {
+    display: flex;
+    animation: ticker2 45s linear infinite;
+    white-space: nowrap;
+    align-items: center;
+  }
+  @keyframes ticker2 {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Highlight card */
+  .highlight-card {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02));
+    border: 1px solid var(--border-bright);
+    padding: 10px 14px;
+    margin-bottom: 10px;
+  }
+  .highlight-label {
+    font-size: 9px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .highlight-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--gold-light);
+  }
+  .highlight-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+  .highlights-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .highlights-row .highlight-card {
+    flex: 1;
+    margin-bottom: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-brand">
+      <div class="logo-box">
+        <img src="https://www.afdb.org/sites/default/files/afdb-logo-en_1.jpg" alt="African Development Bank Group">
+      </div>
+      <div class="brand-text">
+        <div class="brand-sub">Statistics Department · ECST</div>
+      </div>
+    </div>
+    <div class="header-title">Weekly Statistical <span>Bulletin</span> — Commodity Prices, Exchange Rates &amp; Stock Markets</div>
+    <div class="header-date">
+      <div class="date-label">Report Date</div>
+      <div class="date-value">20 FEB 2026 · Vol.5 No.6</div>
+    </div>
+  </header>
+
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <div class="section-header">
+      <div class="section-dot"></div>
+      <div class="section-title">Energy</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="commodity-row">
+      <div class="commodity-name">Brent Crude</div>
+      <div class="commodity-unit">USD/bbl</div>
+      <div class="commodity-value">71.76</div>
+      <div class="changes">
+        <div class="change-badge up">+5.92%</div>
+        <div class="change-badge down">-0.22%</div>
+      </div>
+    </div>
+    <div class="commodity-row">
+      <div class="commodity-name">WTI Crude</div>
+      <div class="commodity-unit">USD/bbl</div>
+      <div class="commodity-value">66.48</div>
+      <div class="changes">
+        <div class="change-badge up">+5.94%</div>
+        <div class="change-badge down">-2.46%</div>
+      </div>
+    </div>
+    <div class="commodity-row">
+      <div class="commodity-name">Natural Gas</div>
+      <div class="commodity-unit">USD/mmBtu</div>
+      <div class="commodity-value">3.05</div>
+      <div class="changes">
+        <div class="change-badge down">-6.04%</div>
+        <div class="change-badge down">-27.07%</div>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top:4px">
+      <div class="section-dot"></div>
+      <div class="section-title">Metals</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="commodity-row">
+      <div class="commodity-name">Gold</div>
+      <div class="commodity-unit">USD/t.oz</div>
+      <div class="commodity-value">5,107.45</div>
+      <div class="changes">
+        <div class="change-badge up">+1.30%</div>
+        <div class="change-badge up">+73.69%</div>
+      </div>
+    </div>
+    <div class="commodity-row">
+      <div class="commodity-name">Silver</div>
+      <div class="commodity-unit">USD/t.oz</div>
+      <div class="commodity-value">84.65</div>
+      <div class="changes">
+        <div class="change-badge up">+9.34%</div>
+        <div class="change-badge up">+156.18%</div>
+      </div>
+    </div>
+    <div class="commodity-row">
+      <div class="commodity-name">Platinum</div>
+      <div class="commodity-unit">USD/t.oz</div>
+      <div class="commodity-value">2,158.80</div>
+      <div class="changes">
+        <div class="change-badge up">+4.45%</div>
+        <div class="change-badge up">+120.13%</div>
+      </div>
+    </div>
+    <div class="commodity-row">
+      <div class="commodity-name">Copper</div>
+      <div class="commodity-unit">USD/mt</div>
+      <div class="commodity-value">12,964</div>
+      <div class="changes">
+        <div class="change-badge up">+0.64%</div>
+        <div class="change-badge up">+35.56%</div>
+      </div>
+    </div>
+    <div class="commodity-row">
+      <div class="commodity-name">Nickel</div>
+      <div class="commodity-unit">USD/mt</div>
+      <div class="commodity-value">17,350</div>
+      <div class="changes">
+        <div class="change-badge up">+2.15%</div>
+        <div class="change-badge up">+10.76%</div>
+      </div>
+    </div>
+    <div class="commodity-row">
+      <div class="commodity-name">Cobalt</div>
+      <div class="commodity-unit">USD/mt</div>
+      <div class="commodity-value">55,872</div>
+      <div class="changes">
+        <div class="change-badge up">+0.01%</div>
+        <div class="change-badge up">+161.05%</div>
+      </div>
+    </div>
+    <div class="commodity-row">
+      <div class="commodity-name">Manganese</div>
+      <div class="commodity-unit">USD/mt</div>
+      <div class="commodity-value">6.26</div>
+      <div class="changes">
+        <div class="change-badge flat">0.00%</div>
+        <div class="change-badge down">-6.57%</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:4px;align-items:center;margin-top:auto;padding-top:4px;">
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;">WoW</div>
+      <div style="width:24px;height:1px;background:var(--border)"></div>
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;">YoY</div>
+    </div>
+    <div class="fert-strip">
+      <div class="fert-item">
+        <div class="fert-name">DAP</div>
+        <div class="fert-val">$627.50</div>
+        <div class="fert-chg down">-0.40%</div>
+      </div>
+      <div class="fert-sep"></div>
+      <div class="fert-item">
+        <div class="fert-name">TSP</div>
+        <div class="fert-val">$590.00</div>
+        <div class="fert-chg up">+0.43%</div>
+      </div>
+      <div class="fert-sep"></div>
+      <div class="fert-item">
+        <div class="fert-name">PHOS ROCK</div>
+        <div class="fert-val">$152.50</div>
+        <div class="fert-chg flat">0.00%</div>
+      </div>
+      <div style="margin-left:auto;font-size:9px;color:var(--muted);align-self:flex-end;">Fertilizers · USD/mt</div>
+    </div>
+  </div>
+
+  <!-- CENTER TOP - Agriculture -->
+  <div class="center-top">
+    <div class="section-header">
+      <div class="section-dot"></div>
+      <div class="section-title">Agricultural Commodities</div>
+      <div class="section-line"></div>
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;white-space:nowrap;margin-left:8px;">WoW &nbsp;|&nbsp; YoY</div>
+    </div>
+
+    <div class="agri-grid">
+      <div class="agri-card up">
+        <div class="agri-name">Wheat HRW</div>
+        <div class="agri-value">585.25 <span style="font-size:11px;color:var(--muted)">¢/bu</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag up">+5.69% WoW</span>
+          <span class="agri-tag down">-14.06% YoY</span>
+        </div>
+      </div>
+      <div class="agri-card down">
+        <div class="agri-name">Corn CBT</div>
+        <div class="agri-value">427.50 <span style="font-size:11px;color:var(--muted)">¢/bu</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag down">-0.98% WoW</span>
+          <span class="agri-tag down">-14.16% YoY</span>
+        </div>
+      </div>
+      <div class="agri-card down">
+        <div class="agri-name">Cocoa</div>
+        <div class="agri-value">3,080 <span style="font-size:11px;color:var(--muted)">USD/mt</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag down">-13.99% WoW</span>
+          <span class="agri-tag down">-69.43% YoY</span>
+        </div>
+      </div>
+      <div class="agri-card down">
+        <div class="agri-name">Coffee Arabica</div>
+        <div class="agri-value">2.88 <span style="font-size:11px;color:var(--muted)">USD/lb</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag down">-3.92% WoW</span>
+          <span class="agri-tag down">-27.15% YoY</span>
+        </div>
+      </div>
+      <div class="agri-card down">
+        <div class="agri-name">Rice</div>
+        <div class="agri-value">10.17 <span style="font-size:11px;color:var(--muted)">USD/cwt</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag down">-7.76% WoW</span>
+          <span class="agri-tag down">-27.16% YoY</span>
+        </div>
+      </div>
+      <div class="agri-card up">
+        <div class="agri-name">Sugar</div>
+        <div class="agri-value">13.87 <span style="font-size:11px;color:var(--muted)">¢/lb</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag up">+2.82% WoW</span>
+          <span class="agri-tag down">-25.35% YoY</span>
+        </div>
+      </div>
+      <div class="agri-card up">
+        <div class="agri-name">Palm Oil</div>
+        <div class="agri-value">1,040.99 <span style="font-size:11px;color:var(--muted)">USD/mt</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag up">+3.01% WoW</span>
+          <span class="agri-tag down">-4.24% YoY</span>
+        </div>
+      </div>
+      <div class="agri-card up">
+        <div class="agri-name">Rubber TSR20</div>
+        <div class="agri-value">1.94 <span style="font-size:11px;color:var(--muted)">USD/kg</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag up">+0.78% WoW</span>
+          <span class="agri-tag down">-5.68% YoY</span>
+        </div>
+      </div>
+      <div class="agri-card up">
+        <div class="agri-name">Cotton</div>
+        <div class="agri-value">65.63 <span style="font-size:11px;color:var(--muted)">¢/lb</span></div>
+        <div class="agri-changes">
+          <span class="agri-tag up">+2.34% WoW</span>
+          <span class="agri-tag down">-7.54% YoY</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER BOTTOM - Exchange Rates -->
+  <div class="center-bottom">
+    <div class="section-header">
+      <div class="section-dot"></div>
+      <div class="section-title">Exchange Rates — Currency per USD</div>
+      <div class="section-line"></div>
+    </div>
+
+    <!-- Major Currencies -->
+    <div class="fx-grid" style="margin-bottom:12px;">
+      <div class="fx-major-card">
+        <div class="fx-code">EUR</div>
+        <div class="fx-rate">0.8500</div>
+        <div class="fx-change down">▼ 0.81% WoW</div>
+        <div class="fx-change up" style="font-size:10px;margin-top:2px;">▲ 10.95% YoY</div>
+      </div>
+      <div class="fx-major-card">
+        <div class="fx-code">GBP</div>
+        <div class="fx-rate">0.7400</div>
+        <div class="fx-change down">▼ 1.17% WoW</div>
+        <div class="fx-change up" style="font-size:10px;margin-top:2px;">▲ 6.20% YoY</div>
+      </div>
+      <div class="fx-major-card">
+        <div class="fx-code">JPY</div>
+        <div class="fx-rate">155.00</div>
+        <div class="fx-change down">▼ 1.43% WoW</div>
+        <div class="fx-change down" style="font-size:10px;margin-top:2px;">▼ 3.70% YoY</div>
+      </div>
+      <div class="fx-major-card">
+        <div class="fx-code">CNY</div>
+        <div class="fx-rate">6.9000</div>
+        <div class="fx-change up">▲ 0.04% WoW</div>
+        <div class="fx-change up" style="font-size:10px;margin-top:2px;">▲ 4.63% YoY</div>
+      </div>
+      <div class="fx-major-card">
+        <div class="fx-code">RUB</div>
+        <div class="fx-rate">76.79</div>
+        <div class="fx-change down">▼ 0.002% WoW</div>
+        <div class="fx-change up" style="font-size:10px;margin-top:2px;">▲ 13.49% YoY</div>
+      </div>
+    </div>
+
+    <!-- African Currencies -->
+    <div style="font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;">African Currencies · Selected</div>
+    <div class="african-fx">
+      <div class="afr-tag"><span class="afr-code">DZD</span><span class="afr-val">130.05</span><span class="afr-chg down">▼0.34%</span></div>
+      <div class="afr-tag"><span class="afr-code">EGP</span><span class="afr-val">47.51</span><span class="afr-chg up">▲6.48%</span></div>
+      <div class="afr-tag"><span class="afr-code">ETB</span><span class="afr-val">155.36</span><span class="afr-chg up">▲0.01%</span></div>
+      <div class="afr-tag"><span class="afr-code">GHS</span><span class="afr-val">10.99</span><span class="afr-chg up">▲29.14%</span></div>
+      <div class="afr-tag"><span class="afr-code">KES</span><span class="afr-val">128.99</span><span class="afr-chg up">▲0.39%</span></div>
+      <div class="afr-tag"><span class="afr-code">NGN</span><span class="afr-val">1,345</span><span class="afr-chg up">▲10.44%</span></div>
+      <div class="afr-tag"><span class="afr-code">ZAR</span><span class="afr-val">16.05</span><span class="afr-chg up">▲12.53%</span></div>
+      <div class="afr-tag"><span class="afr-code">MAD</span><span class="afr-val">9.17</span><span class="afr-chg up">▲7.88%</span></div>
+      <div class="afr-tag"><span class="afr-code">MGA</span><span class="afr-val">4,308</span><span class="afr-chg up">▲2.50%↑</span></div>
+      <div class="afr-tag"><span class="afr-code">SCR</span><span class="afr-val">14.40</span><span class="afr-chg down">▼4.69%↓</span></div>
+      <div class="afr-tag"><span class="afr-code">ZMK</span><span class="afr-val">18,988</span><span class="afr-chg up">▲32.78%</span></div>
+      <div class="afr-tag"><span class="afr-code">TZS</span><span class="afr-val">2,570</span><span class="afr-chg up">▲0.86%</span></div>
+      <div class="afr-tag"><span class="afr-code">TND</span><span class="afr-val">2.87</span><span class="afr-chg up">▲9.46%</span></div>
+      <div class="afr-tag"><span class="afr-code">UGX</span><span class="afr-val">3,594</span><span class="afr-chg up">▲2.11%</span></div>
+      <div class="afr-tag"><span class="afr-code">MUR</span><span class="afr-val">46.39</span><span class="afr-chg up">▲0.32%</span></div>
+      <div class="afr-tag"><span class="afr-code">XOF</span><span class="afr-val">556.83</span><span class="afr-chg up">▲10.96%</span></div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL - Stock Markets -->
+  <div class="right-panel">
+    <div class="section-header">
+      <div class="section-dot"></div>
+      <div class="section-title">African Stock Markets</div>
+      <div class="section-line"></div>
+    </div>
+
+    <div style="display:flex;gap:4px;justify-content:flex-end;margin-bottom:4px;">
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;width:52px;text-align:right;">WoW%</div>
+      <div style="font-size:9px;color:var(--muted);letter-spacing:1px;width:52px;text-align:right;">YoY%</div>
+    </div>
+
+    <div class="stock-row up">
+      <div class="stock-country">Côte d'Ivoire</div>
+      <div class="stock-index">BRVM Composite</div>
+      <div class="stock-value">402.38</div>
+      <div class="stock-ww up">+3.78%</div>
+      <div class="stock-yy up">+38.17%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">Egypt</div>
+      <div class="stock-index">CASE 30</div>
+      <div class="stock-value">50,667</div>
+      <div class="stock-ww up">+0.35%</div>
+      <div class="stock-yy up">+63.89%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">Ghana</div>
+      <div class="stock-index">GGSECI</div>
+      <div class="stock-value">11,758</div>
+      <div class="stock-ww up">+14.57%</div>
+      <div class="stock-yy up">+114.82%</div>
+    </div>
+    <div class="stock-row down">
+      <div class="stock-country">Kenya</div>
+      <div class="stock-index">NSE20</div>
+      <div class="stock-value">3,622.57</div>
+      <div class="stock-ww down">-0.29%</div>
+      <div class="stock-yy up">+60.63%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">Mauritius</div>
+      <div class="stock-index">All Shares</div>
+      <div class="stock-value">2,336.38</div>
+      <div class="stock-ww up">+0.18%</div>
+      <div class="stock-yy down">-7.25%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">Morocco</div>
+      <div class="stock-index">Casa All Share</div>
+      <div class="stock-value">18,701</div>
+      <div class="stock-ww up">+0.69%</div>
+      <div class="stock-yy up">+10.31%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">Namibia</div>
+      <div class="stock-index">FTSE NSX</div>
+      <div class="stock-value">2,360.07</div>
+      <div class="stock-ww up">+2.35%</div>
+      <div class="stock-yy up">+32.48%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">Nigeria</div>
+      <div class="stock-index">NSE All Share</div>
+      <div class="stock-value">194,989</div>
+      <div class="stock-ww up">+6.95%</div>
+      <div class="stock-yy up">+79.60%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">South Africa</div>
+      <div class="stock-index">JALSH</div>
+      <div class="stock-value">123,022</div>
+      <div class="stock-ww up">+2.02%</div>
+      <div class="stock-yy up">+38.42%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">Tunisia</div>
+      <div class="stock-index">TUNINDEX</div>
+      <div class="stock-value">14,813</div>
+      <div class="stock-ww up">+1.28%</div>
+      <div class="stock-yy up">+42.10%</div>
+    </div>
+    <div class="stock-row up">
+      <div class="stock-country">Uganda</div>
+      <div class="stock-index">USE All Share</div>
+      <div class="stock-value">496.32</div>
+      <div class="stock-ww up">+3.02%</div>
+      <div class="stock-yy up">+47.58%</div>
+    </div>
+    <div class="stock-row down">
+      <div class="stock-country">Zambia</div>
+      <div class="stock-index">LUSEIDX</div>
+      <div class="stock-value">26,361</div>
+      <div class="stock-ww down">-0.16%</div>
+      <div class="stock-yy up">+70.98%</div>
+    </div>
+
+    <div style="margin-top:auto;padding-top:4px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:9px;color:var(--muted);">10 of 12 indices ▲ · 2 ▼</div>
+      <div style="font-size:9px;color:var(--muted);">Source: Bloomberg / AfDB</div>
+    </div>
+  </div>
+</div>
+
+<!-- TICKER TAPE -->
+<div class="ticker-wrap">
+  <div class="ticker-label">LIVE PRICES</div>
+  <div class="ticker-scroll">
+    <div class="ticker-item"><span class="t-name">BRENT</span> <span class="t-val">$71.76</span> <span class="t-up">+5.92%</span></div>
+    <div class="ticker-item"><span class="t-name">WTI</span> <span class="t-val">$66.48</span> <span class="t-up">+5.94%</span></div>
+    <div class="ticker-item"><span class="t-name">NAT GAS</span> <span class="t-val">$3.05</span> <span class="t-down">-6.04%</span></div>
+    <div class="ticker-item"><span class="t-name">GOLD</span> <span class="t-val">$5,107.45</span> <span class="t-up">+1.30%</span></div>
+    <div class="ticker-item"><span class="t-name">SILVER</span> <span class="t-val">$84.65</span> <span class="t-up">+9.34%</span></div>
+    <div class="ticker-item"><span class="t-name">PLATINUM</span> <span class="t-val">$2,158.80</span> <span class="t-up">+4.45%</span></div>
+    <div class="ticker-item"><span class="t-name">COPPER</span> <span class="t-val">$12,964</span> <span class="t-up">+0.64%</span></div>
+    <div class="ticker-item"><span class="t-name">NICKEL</span> <span class="t-val">$17,350</span> <span class="t-up">+2.15%</span></div>
+    <div class="ticker-item"><span class="t-name">COBALT</span> <span class="t-val">$55,872</span> <span class="t-up">+0.01%</span></div>
+    <div class="ticker-item"><span class="t-name">WHEAT HRW</span> <span class="t-val">585.25¢</span> <span class="t-up">+5.69%</span></div>
+    <div class="ticker-item"><span class="t-name">CORN CBT</span> <span class="t-val">427.50¢</span> <span class="t-down">-0.98%</span></div>
+    <div class="ticker-item"><span class="t-name">COCOA</span> <span class="t-val">$3,080</span> <span class="t-down">-13.99%</span></div>
+    <div class="ticker-item"><span class="t-name">COFFEE</span> <span class="t-val">$2.88</span> <span class="t-down">-3.92%</span></div>
+    <div class="ticker-item"><span class="t-name">RICE</span> <span class="t-val">$10.17</span> <span class="t-down">-7.76%</span></div>
+    <div class="ticker-item"><span class="t-name">SUGAR</span> <span class="t-val">13.87¢</span> <span class="t-up">+2.82%</span></div>
+    <div class="ticker-item"><span class="t-name">PALM OIL</span> <span class="t-val">$1,040.99</span> <span class="t-up">+3.01%</span></div>
+    <div class="ticker-item"><span class="t-name">RUBBER</span> <span class="t-val">$1.94</span> <span class="t-up">+0.78%</span></div>
+    <div class="ticker-item"><span class="t-name">COTTON</span> <span class="t-val">65.63¢</span> <span class="t-up">+2.34%</span></div>
+    <div class="ticker-item"><span class="t-name">EUR/USD</span> <span class="t-val">0.8500</span> <span class="t-down">-0.81%</span></div>
+    <div class="ticker-item"><span class="t-name">GBP/USD</span> <span class="t-val">0.7400</span> <span class="t-down">-1.17%</span></div>
+    <div class="ticker-item"><span class="t-name">JPY/USD</span> <span class="t-val">155.00</span> <span class="t-down">-1.43%</span></div>
+    <div class="ticker-item"><span class="t-name">CNY/USD</span> <span class="t-val">6.9000</span> <span class="t-up">+0.04%</span></div>
+    <div class="ticker-item"><span class="t-name">DAP</span> <span class="t-val">$627.50</span> <span class="t-down">-0.40%</span></div>
+    <div class="ticker-item"><span class="t-name">TSP</span> <span class="t-val">$590.00</span> <span class="t-up">+0.43%</span></div>
+    <!-- DUPLICATE FOR SEAMLESS LOOP -->
+    <div class="ticker-item"><span class="t-name">BRENT</span> <span class="t-val">$71.76</span> <span class="t-up">+5.92%</span></div>
+    <div class="ticker-item"><span class="t-name">WTI</span> <span class="t-val">$66.48</span> <span class="t-up">+5.94%</span></div>
+    <div class="ticker-item"><span class="t-name">NAT GAS</span> <span class="t-val">$3.05</span> <span class="t-down">-6.04%</span></div>
+    <div class="ticker-item"><span class="t-name">GOLD</span> <span class="t-val">$5,107.45</span> <span class="t-up">+1.30%</span></div>
+    <div class="ticker-item"><span class="t-name">SILVER</span> <span class="t-val">$84.65</span> <span class="t-up">+9.34%</span></div>
+    <div class="ticker-item"><span class="t-name">PLATINUM</span> <span class="t-val">$2,158.80</span> <span class="t-up">+4.45%</span></div>
+    <div class="ticker-item"><span class="t-name">COPPER</span> <span class="t-val">$12,964</span> <span class="t-up">+0.64%</span></div>
+    <div class="ticker-item"><span class="t-name">NICKEL</span> <span class="t-val">$17,350</span> <span class="t-up">+2.15%</span></div>
+    <div class="ticker-item"><span class="t-name">COBALT</span> <span class="t-val">$55,872</span> <span class="t-up">+0.01%</span></div>
+    <div class="ticker-item"><span class="t-name">WHEAT HRW</span> <span class="t-val">585.25¢</span> <span class="t-up">+5.69%</span></div>
+    <div class="ticker-item"><span class="t-name">CORN CBT</span> <span class="t-val">427.50¢</span> <span class="t-down">-0.98%</span></div>
+    <div class="ticker-item"><span class="t-name">COCOA</span> <span class="t-val">$3,080</span> <span class="t-down">-13.99%</span></div>
+    <div class="ticker-item"><span class="t-name">COFFEE</span> <span class="t-val">$2.88</span> <span class="t-down">-3.92%</span></div>
+    <div class="ticker-item"><span class="t-name">RICE</span> <span class="t-val">$10.17</span> <span class="t-down">-7.76%</span></div>
+    <div class="ticker-item"><span class="t-name">SUGAR</span> <span class="t-val">13.87¢</span> <span class="t-up">+2.82%</span></div>
+    <div class="ticker-item"><span class="t-name">PALM OIL</span> <span class="t-val">$1,040.99</span> <span class="t-up">+3.01%</span></div>
+    <div class="ticker-item"><span class="t-name">RUBBER</span> <span class="t-val">$1.94</span> <span class="t-up">+0.78%</span></div>
+    <div class="ticker-item"><span class="t-name">COTTON</span> <span class="t-val">65.63¢</span> <span class="t-up">+2.34%</span></div>
+    <div class="ticker-item"><span class="t-name">EUR/USD</span> <span class="t-val">0.8500</span> <span class="t-down">-0.81%</span></div>
+    <div class="ticker-item"><span class="t-name">GBP/USD</span> <span class="t-val">0.7400</span> <span class="t-down">-1.17%</span></div>
+    <div class="ticker-item"><span class="t-name">JPY/USD</span> <span class="t-val">155.00</span> <span class="t-down">-1.43%</span></div>
+    <div class="ticker-item"><span class="t-name">CNY/USD</span> <span class="t-val">6.9000</span> <span class="t-up">+0.04%</span></div>
+    <div class="ticker-item"><span class="t-name">DAP</span> <span class="t-val">$627.50</span> <span class="t-down">-0.40%</span></div>
+    <div class="ticker-item"><span class="t-name">TSP</span> <span class="t-val">$590.00</span> <span class="t-up">+0.43%</span></div>
+  </div>
+</div>
+
+</body>
+</html>
